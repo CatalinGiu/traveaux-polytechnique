@@ -1,0 +1,97 @@
+<processor name="Processor">
+    <compilation name="Compilation">
+        <configurations name="Configurations">
+            <configuration name="Release"/>
+            <configuration name="Debug"/>
+            <configuration name="Native"/>
+            <option id="bridge.libpath" value="&lt;PROCDIR&gt;/Debug &lt;PROCDIR&gt;/softfloat/lib/Debug" inherit="1" cfg="Debug"/>
+            <option id="bridge.libpath" value="&lt;PROCDIR&gt;/&lt;CONFIG&gt;" inherit="0" cfg="Native"/>
+            <option id="bridge.libpath" value="&lt;PROCDIR&gt;/Release &lt;PROCDIR&gt;/softfloat/lib/Release" inherit="1" cfg="Release"/>
+            <option id="bridge.llibs" value="native" inherit="0" cfg="Native"/>
+            <option id="cpp.include" value="" inherit="0" cfg="Native"/>
+            <option id="level.lvl" value="0" cfg="Debug"/>
+            <option id="level.lvl" value="1" cfg="Release"/>
+            <option id="native.native" value="on" cfg="Native"/>
+            <option id="noodle.alwinc" value="flx_native.h" inherit="0" cfg="Native"/>
+        </configurations>
+        <level name="Level 0" lvl="0">
+            <option id="backend.mist2.debug" value="on"/>
+            <option id="llvm.optim" value="0"/>
+            <option id="noodle.debug.osps" value="on"/>
+            <option id="noodle.debug.sa" value="sal"/>
+            <option id="noodle.debug.sca" value="on"/>
+            <option id="noodle.optim.norle" value="on"/>
+            <option id="noodle.optim.notcr" value="on"/>
+        </level>
+        <level name="Level 1" lvl="1">
+            <option id="llvm.optim" value="s"/>
+        </level>
+        <library name="Processor model">
+            <option id="cpp.include" value="" inherit="0"/>
+            <option id="cpp.wundef" value="off"/>
+            <option id="noodle.alwinc" value="" inherit="0"/>
+            <option id="noodle.debug.osps" value="off"/>
+            <option id="noodle.debug.sa" value="none"/>
+            <option id="noodle.debug.sca" value="off"/>
+            <view in="1" type="c" name="Compilation"/>
+            <view in="1" type="a" name="Linking and (dis)assembling"/>
+            <view in="1" type="s" name="Simulation"/>
+            <view in="1" type="h" name="HDL generation"/>
+        </library>
+        <option id="backend.amnesia.clustrerout" value="2"/>
+        <option id="backend.amnesia.clustrout" value="4"/>
+        <option id="backend.cosel.fse" value="all"/>
+        <option id="backend.cosel.move" value="on"/>
+        <option id="backend.cosel.status" value="on"/>
+        <option id="backend.mist2.nops" value="on"/>
+        <option id="backend.showcolor.greedy" value="on"/>
+        <option id="bridge.cfg" value="&lt;PROCDIR&gt;/flx.bcf"/>
+        <option id="bridge.libpath" value="&lt;PROCDIR&gt;/runtime/lib/&lt;PCONFIG&gt;" inherit="1"/>
+        <option id="bridge.llibs" value="flx c softfloat m" inherit="1"/>
+        <option id="bridge.map.call" value="on"/>
+        <option id="bridge.map.calltree" value="on"/>
+        <option id="bridge.map.file" value="on"/>
+        <option id="bridge.map.radix" value="hex"/>
+        <option id="bridge.map.ref" value="on"/>
+        <option id="bridge.map.sdr" value="on"/>
+        <option id="bridge.symtab" value="on"/>
+        <option id="cpp.include" value="&lt;PROCDIR&gt;/runtime/include" inherit="1"/>
+        <option id="darts.dis.format" value="lst"/>
+        <option id="darts.dis.iradix" value="hex"/>
+        <option id="llvm.alwinc" value="flx_llvm.h" inherit="1"/>
+        <option id="native.lnxcomp" value="-m32" inherit="1"/>
+        <option id="native.lnxlink" value="-m32" inherit="1"/>
+        <option id="noodle.alwinc" value="flx_chess.h" inherit="1"/>
+        <option id="project.dasobj" value="on"/>
+        <option id="project.dastgt" value="on"/>
+        <option id="project.dwarf" value="on"/>
+        <option id="simrun.dbgopts" value="{-u server=localhost} {-u core = 1}" inherit="1"/>
+        <option id="simrun.hdlprx" value="&lt;PROCDIR&gt;/../hdl/flx_vlog.prx &lt;PROCDIR&gt;/../hdl/flx_vhdl.prx" inherit="1"/>
+        <option id="simrun.issca" value="&lt;PROCDIR&gt;/../iss/flx_ca" inherit="1"/>
+        <option id="simrun.issdb" value="&lt;PROCDIR&gt;/../debug_client/flx_client" inherit="1"/>
+        <option id="simrun.loadpc" value="off"/>
+        <option id="simrun.loadsp" value="off"/>
+    </compilation>
+    <hdlgeneration name="HDL generation">
+        <option id="hdl.usepcu" value="on"/>
+        <option id="hdl.usepdg" value="on"/>
+    </hdlgeneration>
+    <reglayout> &lt;label&gt;  Registers &lt;empty&gt;  {{PC SP LR PL PH MC} {R0 R1 R2 R3 R4 R5 R6 R7} {R8 R9 R10 R11 R12 R13 R14 R15} {R16 R17 R18 R19 R20 R21 R22 R23} {R24 R25 R26 R27 R28 R29 R30 R31}}
+ div__PA  div__B div__cnt 
+ &lt;empty&gt;  &lt;label&gt;  {Pipe regs}
+ &lt;empty&gt;  {{ {__pS1_r __pS2_r} {__pD1_r __pD2_r} {__pE1_r __pE2_r}} }
+ </reglayout>
+    <simulation name="Simulator generation" mode="top">
+        <option id="checkers.UsePCU" value="on"/>
+        <option id="checkers.UsePDG" value="on"/>
+        <sim name="Cycle accurate" mode="ca"/>
+        <sim name="Instruction accurate" mode="ia">
+            <option id="checkers.ControllerHeader" value="&lt;PROCDIR&gt;/flx_iapcu.h"/>
+            <option id="checkers.InstructionAccurateNextInstructionPCStorages" value="lnk" inherit="1"/>
+            <option id="checkers.UsePDG" value="on"/>
+        </sim>
+        <sim name="Debug client" mode="db">
+            <option id="checkers.UsePDG" value="on"/>
+        </sim>
+    </simulation>
+</processor>

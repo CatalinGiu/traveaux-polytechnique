@@ -1,0 +1,36 @@
+inf8601-lab2 serial (512 x 512): 34.6 fps
+inf8601-lab2 serial (512 x 512): 36.2 fps
+inf8601-lab2 openmp (512 x 512): 198.1 fps
+inf8601-lab2 openmp (512 x 512): 197.6 fps
+inf8601-lab2 openmp (512 x 512): 197.2 fps
+inf8601-lab2 openmp (512 x 512): 197.8 fps
+inf8601-lab2 openmp (512 x 512): 198.3 fps
+inf8601-lab2 openmp (512 x 512): 198.0 fps
+inf8601-lab2 openmp (512 x 512): 197.8 fps
+inf8601-lab2 openmp (512 x 512): 199.9 fps
+inf8601-lab2 openmp (512 x 512): 201.5 fps
+inf8601-lab2 openmp (512 x 512): 201.2 fps
+NVIDIA Corporation NVIDIA CUDA
+clock frequency 1710
+compute units 30
+inf8601-lab2 opencl (512 x 512): 629.2 fps
+inf8601-lab2 opencl (512 x 512): 957.9 fps
+inf8601-lab2 opencl (512 x 512): 1010.9 fps
+inf8601-lab2 opencl (512 x 512): 1033.1 fps
+inf8601-lab2 opencl (512 x 512): 1044.1 fps
+inf8601-lab2 opencl (512 x 512): 1051.3 fps
+inf8601-lab2 opencl (512 x 512): 1055.5 fps
+inf8601-lab2 opencl (512 x 512): 1059.1 fps
+inf8601-lab2 serial (512 x 512): 35.6 fps
+inf8601-lab2 serial (512 x 512): 37.5 fps
+inf8601-lab2 serial (512 x 512): 37.8 fps
+inf8601-lab2 openmp (512 x 512): 196.4 fps
+inf8601-lab2 openmp (512 x 512): 198.0 fps
+NVIDIA Corporation NVIDIA CUDA
+clock frequency 1710
+compute units 30
+inf8601-lab2 opencl (512 x 512): 947.8 fps
+inf8601-lab2 opencl (512 x 512): 1033.9 fps
+inf8601-lab2 opencl (512 x 512): 1053.0 fps
+inf8601-lab2 opencl (512 x 512): 1060.6 fps
+

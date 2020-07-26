@@ -1,0 +1,9 @@
+6.4)
+Effectivement, on aurait pu mettre le codes d'exécution des tâches directement dans les handlers des interruptions, mais ceci viendrait avec plusieurs inconvénients. Le plus grand étant que les interruption handlers ne peuvent pas être interrompus que par une autre interruption, ainsi, on n'a plus à possibilité d'attribuer des priorités aux tâches.
+
+6.5) 
+Lorsqu’une deuxième interruption est reçue pendant qu'une première est déjà en train d'être traitée. La machine va sauver l'état des registres, il incrémente le nombre d'interruption imbriquées (Nested Interrupts) de 1 et ensuite va aller étudier la nouvelle interruption. Ici, nous pouvons avoir deux situations possibles :
+	1. La nouvelle interruption est plus prioritaire que celle qui était en train d'être traitée.
+	Dans ce cas, la machine va aller exécuter en premier le handler de l'interruption nouvellement reçue. Une fois que ce sera fini, il va décrémenter le nombre de interruption imbriquées de 1 et va retourner à l'exécution du handler de la première interruption.
+	2. La nouvelle interruption est moins prioritaire que celle qui s'execute dans la machine.
+	Dans ce cas, la machine va finir d'exécuter le handler de la première interruption qui est rentrée. Une fois cela fini, elle va décrémenter le compteur d'interruptions imbriquées de 1 et va ensuite aller exécuter le handler de la deuxième interruption (arrivée un peu plus tard).

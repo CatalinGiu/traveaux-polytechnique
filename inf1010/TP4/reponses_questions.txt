@@ -1,0 +1,21 @@
+﻿1. La seule classe abstraite déclarée est ObjetNumerique, car elle contient au moins une methode virtuelle pure.
+On ne cherchera jamais à créer des objets de type ObjetNumerique, mais plutôt un objet de classes dérivées. 
+Ainsi, ObjetNumerique devient une classe abstraite.
+
+
+2. La méthode recherche est virtuelle, car on veut toujours commencer par chercher les attributs de l'objet 
+en tant que tel, suite à quoi avec une redéfinition en utilisant explicitement la methode recherche des classes 
+de base nous pouvons couvrir tous les attributs. obtenirLimiteEmprunts est virtuelle car nous voulons toujours 
+chercher la limite de la classe par laquelle l'objet a été instancié. Pour ObjetNumérique nous avons déclaré les 
+méthodes d'accès comme virtuelles pures, car les attributs sont toujours ceux des classes dérivées, étant impossible 
+d'instancier un objet à partir d'une classe abstraite. C'est donc logique d'avoir des méthodes d'accès virtuelles. 
+Finalement, le destructeur est virtuel pour que l'instanciation d'un objet de type 
+ObjetNumerique* objN = new LivreNumerique() appelle bien le destructeur de LivreNumerique et non celui de ObjetNumerique.
+
+
+3. car nous voulons utiliser les opérateurs<< des classes de base a partir d'un objet de classes dérivées. 
+Pour ce faire, il faut explicitement "caster" l'objet dérivé comme étant un objet de classe de base. 
+L'inverse est aussi vrai, si on veut que le compilateur comprenne que la methode d'affichage qu'on cherche 
+est celle d'un objet dérivé de la classe qu'on lui fournit. Encore une fois, il faut explicitement "caster" cet
+objet comme étant un objet de la classe que l'on souhaite.
+

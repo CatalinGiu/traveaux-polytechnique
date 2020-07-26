@@ -1,0 +1,17 @@
+Questions
+
+1. Pour un attribut public, n'importe quelle classe qui "include" la classe en question peut voir et utiliser
+l'attribut. Un attribut protected peut être vu et utilisé par les classes dérivées à la classe en question, mais pas
+par les autres classes. Un attribut private peut seulement être utilisé par la classe en question, toutes autres
+classes n'en ont pas l'autorisation.
+
+2. Son maximum d'emprunts est de deux même si sa limite d'emprunts est de 6 (double de son nombre d'écoles). Cela est
+dû au fait que la fonction obtenirLimiteEmprunts n'est pas virtuel, ce qui fait en sorte que l'utilisation de cette fonction prendra toujours 
+celle contenue dans la classe de base et pas dans celle dérivée. Albus étant un professeur, il devrait pouvoir 
+emprunter plus que 2 objets, mais ce n'est pas le cas ici.
+
+3. Un étudiant au BAC devrait pouvoir emprunter 8 livres, puisque c'est le double de la limite d'un étudiant normal,
+qui est de 4 (double de abonné normal). La fonction obtenirLimiteEmprunts va renvoyer à la même fonction de la classe
+de base, soit celle d'Abonné. Même en faisant Étudiant::obtenirLimiteEmprunts * 2, comme cette méthode n'est pas 
+virtuelle, le compilateur va comprendre Abonne::obtenirLimiteEmprunts * 2. Ceci peut être réglé en déclarant
+obtenirLimiteEmprunts comme étant une méthode virtuelle.

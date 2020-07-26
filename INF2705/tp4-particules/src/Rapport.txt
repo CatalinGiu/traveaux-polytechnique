@@ -1,0 +1,33 @@
+Indice: pour bien répondre à ces deux questions, essayez de voir si votre
+réponse fonctionne dans votre application. (Pour chacune, ce ne sont que
+quelques lignes à modifier dans le nuanceur!)
+
+
+Q1: Dans la partie 1, des points de taille fixe sont affichés à l'écran.
+    Leur taille est donnée par la variable gl_PointSize.
+    i) Comment faire pour que la taille d'un point varie de façon inverse
+    à sa distance du plan avant du volume de visualisation?
+Nous allons utiliser la variable distCam pour connaitre la distance du point par rapport a la camera, en ainsi en divisant la valeur initiale de PointSize par distCam on va obtenir une taille du point qui rapetisse a mesure qu'il s'eloigne de la camera
+    ii) Donnez l'énoncé GLSL que vous utiliseriez pour implanter ceci.
+
+Nuanceur de geometrie:
+
+    uniform float distCam;
+    ...
+    float pointSize = 2.0 / distCam;
+
+
+Q2: Pour afficher une étincelle qui tourne sur elle-même, on a appliqué une
+    matrice de rotation sur les quatre sommets.
+    i) Pourrait-on faire tourner l'étincelle en appliquant la même matrice
+    de rotation sur les coordonnées de texture plutôt que sur les
+    coordonnées des sommets?
+Oui
+    ii) Quel problème pourrait-on alors observer et comment devrait-il être
+    corrigé?
+En faisant tourner les coordonnées de texture, elles tomberont rapidement en dehors de la texture. 
+    Par exemple, en faisant tourner le point 0,0 dans le sens horraire, celui-ci débordera vers la gauche et sa coordonnée en x deviendra donc négative.
+    Il faut donc tout d'abord gérer ce débordement pour que les coordonnées négatives soient ramenées entre 0 et 1. Cependant, même une fois la correction appliquée,
+    la texture risque d'être étrangement découpée et le résultat ne sera pas jolie. C'est pourquoi il faut aussi une image adaptée lorsque l'on veut faire ce genre de manipulation.
+
+

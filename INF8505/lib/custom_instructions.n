@@ -1,0 +1,18 @@
+reg RA <w32> alias R[3] read(rar) write(raw);
+reg RB <w32> alias R[4] read(rbr) write(rbw);
+reg RC <w32> alias R[5] read(rcr) write(rcw);
+reg RD <w32> alias R[6] read(rdr) write(rdw);
+reg RE <w32> alias R[7] read(rer) write(rew);
+reg RF <w32> alias R[8] read(rfr) write(rfw);
+
+fu mau;
+
+opn ma()
+{
+    action { 
+    stage EX:
+        RA = ma(rar=RA,rbr=RB) @mau;
+    }
+    syntax : "ma" ",r3,r4";
+    image  : opcode.function::"00000000"::"0000000"::function_code.maci;
+}
